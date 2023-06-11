@@ -1,0 +1,50 @@
+{
+  "name": "@wayfu/waydown",
+  "version": "0.0.1",
+  "description": "WayFu WhatsApp Markdown",
+  "main": "index.js",
+  "type": "module",
+  "types": "index.d.ts",
+  "scripts": {
+    "dev": "webpack --config webpack.config.js --mode=development -w",
+    "build": "webpack --config webpack.config.js --mode=production",
+    "release": "standard-version"
+  },
+  "keywords": [
+    "markdown",
+    "whatsapp"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wayfu-id/waydown.git"
+  },
+  "files": [
+    "index.*",
+    "dist",
+    "package.json"
+  ],
+  "author": "WayFu (https://github.com/wayfu-id)",
+  "license": "ISC",
+  "standard-version": {
+    "scripts": {
+      "postbump": "npm run build && git add . && git commit -m \"chore(build): build & bump new version\""
+    }
+  },
+  "commitizen": {
+    "path": "cz-conventional-changelog"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "dependencies": {
+    "@wayfu/wayfu-dom": "^0.1.7"
+  },
+  "devDependencies": {
+    "husky": "^8.0.3",
+    "terser-webpack-plugin": "^5.3.9",
+    "webpack": "^5.85.1",
+    "webpack-cli": "^5.1.3"
+  }
+}
