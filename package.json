@@ -39,7 +39,7 @@
     ]
   },
   "dependencies": {
-    "@wayfu/wayfu-dom": "^0.1.7"
+    "@wayfu/wayfu-dom": "^0.1.9"
   },
   "devDependencies": {
     "husky": "^8.0.3",
