@@ -16,6 +16,7 @@ export default {
             name: "Waydown",
             type: "umd",
             export: "default",
+            umdNamedDefine: true,
         },
     },
     devtool: "source-map",
