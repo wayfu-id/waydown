@@ -1,9 +1,9 @@
 
-import { elemenOptions } from "@wayfu/wayfu-dom";
+import { elementOptions } from "@wayfu/wayfu-dom";
 
 export type WaydowOptions = {
     plain: boolean,
-} & elemenOptions;
+} & elementOptions;
 
 /**
  * Waydown : A WhatsApp markdown/Format decoder
