@@ -1,6 +1,6 @@
 {
   "name": "@wayfu/waydown",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "WayFu WhatsApp Markdown",
   "main": "index.ts",
   "scripts": {
