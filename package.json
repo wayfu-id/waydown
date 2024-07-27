@@ -36,10 +36,8 @@
       "@commitlint/config-conventional"
     ]
   },
-  "dependencies": {
-    "@wayfu/wayfu-dom": "^0.1.12"
-  },
   "devDependencies": {
+    "@wayfu/wayfu-dom": "^0.2.0",
     "husky": "^8.0.3",
     "terser-webpack-plugin": "^5.3.9",
     "ts-loader": "^9.5.1",
