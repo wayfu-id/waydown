@@ -2,7 +2,7 @@
   "name": "@wayfu/waydown",
   "version": "0.0.6",
   "description": "WayFu WhatsApp Markdown",
-  "main": "index.ts",
+  "main": "index.js",
   "scripts": {
     "dev": "webpack --config webpack.config.js --mode=development -w",
     "build": "webpack --config webpack.config.js --mode=production",
@@ -37,7 +37,7 @@
     ]
   },
   "devDependencies": {
-    "@wayfu/wayfu-dom": "^0.2.0",
+    "@wayfu/wayfu-dom": "^0.2.1",
     "husky": "^8.0.3",
     "terser-webpack-plugin": "^5.3.9",
     "ts-loader": "^9.5.1",

@@ -5,54 +5,57 @@ const TerserPlugin = require("terser-webpack-plugin");
 
 let { name, version, author } = JSON.parse(fs.readFileSync("package.json", "utf8"));
 
-module.exports = {
-    entry: {
-        waydown: path.resolve(__dirname, "index.ts"),
-    },
-    module: {
-        rules: [
-            {
-                test: /\.ts$/,
-                exclude: [/node_modules/],
-                loader: "ts-loader",
-            },
-        ],
-    },
-    resolve: { extensions: [".ts", ".js"] },
-    output: {
-        path: path.resolve(__dirname, "dist"),
-        filename: "index.min.js",
-        library: {
-            name: "Waydown",
-            type: "umd",
-            export: "default",
-            umdNamedDefine: true,
-        },
-        clean: true,
-    },
-    devtool: "source-map",
-    plugins: [
-        new webpack.DefinePlugin({
-            __VERSION__: JSON.stringify(`${version}`),
-        }),
-        new webpack.BannerPlugin({
-            banner: `${name} v${version} - (c) ${author}, ISC License`,
-        }),
-    ],
-    optimization: {
-        minimizer: [
-            new TerserPlugin({
-                terserOptions: {
-                    compress: {
-                        keep_classnames: false,
-                        keep_fnames: true,
-                    },
+function createConfig(minify = false) {
+    return {
+        entry: path.resolve(__dirname, "index.ts"),
+        module: {
+            rules: [
+                {
+                    test: /\.ts$/,
+                    exclude: [/node_modules/],
+                    loader: "ts-loader",
                 },
-                extractComments: false,
+            ],
+        },
+        devtool: `${minify ? "" : "inline-"}source-map`,
+        resolve: { extensions: [".ts", ".js"] },
+        output: {
+            path: path.resolve(__dirname, minify ? "dist" : ""),
+            filename: `index${minify ? ".min" : ""}.js`,
+            library: {
+                name: "Waydown",
+                type: "umd",
+                export: minify ? "default" : undefined,
+                umdNamedDefine: true,
+            },
+            clean: minify,
+        },
+        plugins: [
+            new webpack.DefinePlugin({
+                __VERSION__: JSON.stringify(`${version}`),
+            }),
+            new webpack.BannerPlugin({
+                banner: `${name} v${version} - (c) ${author}, ISC License`,
             }),
         ],
-    },
-    externals: {
-        "@wayfu/wayfu-dom": "DOM",
-    },
-};
+        optimization: {
+            minimizer: [
+                new TerserPlugin({
+                    include: /\.min/g,
+                    terserOptions: {
+                        compress: {
+                            keep_classnames: true,
+                            keep_fnames: true,
+                        },
+                    },
+                    extractComments: false,
+                }),
+            ],
+        },
+        externals: {
+            "@wayfu/wayfu-dom": "DOM",
+        },
+    };
+}
+
+module.exports = [createConfig(), createConfig(true)];
